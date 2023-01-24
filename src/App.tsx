@@ -1,27 +1,19 @@
 import React from 'react';
-import { AppBar, Button, Grid, IconButton, Toolbar } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { Container, Grid } from '@mui/material';
+import Navbar from './components/Navbar';
+import DrawrPad from './components/DrawrPad';
 
 export default function App() {
   return (
     <>
-    <AppBar position='static'>
-      <Toolbar>
-        <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        sx={{ mr: 2 }}>
-          <MenuIcon />
-        </IconButton>
-      </Toolbar>
-    </AppBar>
-      <Grid container width={2}>
-          <Grid item>
-            <Button>Clicky</Button>
+      <Navbar />
+      <Container maxWidth="lg" sx={{ marginTop: '95px' }}>
+        <Grid container width="100%" justifyContent="center" alignContent="center" sx={pb: '5px'}>
+          <Grid item maxWidth="75%" border="2px solid black" borderRadius={5}>
+            <DrawrPad />
           </Grid>
-      </Grid>
+        </Grid>
+      </Container>
     </>
   );
 }

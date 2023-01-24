@@ -25,6 +25,7 @@ const watch = async () => {
   const ctx = await esbuild.context({ ...ESBUILD_CONFIG });
   await ctx.watch();
 };
+
 if (argv.includes('--build')) {
   await builder();
 } else if (argv.includes('--watch')) {
