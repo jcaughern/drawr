@@ -107,3 +107,8 @@ dist
 public/*
 !public/index.html
 
+# TLS Certs
+server/certs/*
+
+# Environment file
+.env
