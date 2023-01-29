@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "esbuild src/index.tsx --outdir=public/assets --bundle",
-    "start": "node ./esbuild.config.mjs"
+    "build": "esbuild src/index.tsx --outdir=public/assets --bundle && tsc -b ./server",
+    "start": "node ./esbuild.config.mjs",
+    "dev:build": "concurrently \"node ./esbuild.config.mjs --watch\" \"cd ./server && tsc --watch\"",
+    "dev:server": "nodemon ./dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -48,6 +50,7 @@
     "@types/react": "^18.0.27",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
+    "concurrently": "^7.6.0",
     "eslint": "^8.32.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
