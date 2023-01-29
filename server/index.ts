@@ -5,15 +5,29 @@ dotenv.config();
 import fs from 'fs';
 import path from 'path';
 import { createServer } from 'https';
-import WebSocket from 'ws';
+import { WebSocketServer } from 'ws';
 import app from './app';
 
+const { PORT, TLS_CERTFILE , TLS_KEYFILE } = process.env;
+
 const tlsServer = createServer({
-  cert: fs.readFileSync(path.join(__dirname, process.env.TLS_CERTFILE || '../server/certs/localhost.crt'), 'utf-8'),
-  key: fs.readFileSync(path.join(__dirname, process.env.TLS_KEYFILE || '../server/certs/localhost.key'), 'utf-8'),
+  cert: fs.readFileSync(
+    path.join(
+      __dirname,
+      TLS_CERTFILE || '../server/certs/localhost.crt',
+    ),
+    'utf-8',
+  ),
+  key: fs.readFileSync(
+    path.join(
+      __dirname,
+      TLS_KEYFILE || '../server/certs/localhost.key',
+    ),
+    'utf-8',
+  ),
 });
 
-const wsServer = new WebSocket.Server({ server: tlsServer });
+const wsServer = new WebSocketServer({ server: tlsServer });
 
 wsServer.on('connection', (ws) => {
   ws.on('error', console.error);
@@ -22,13 +36,5 @@ wsServer.on('connection', (ws) => {
   });
 });
 
-const server = app.listen(3000);
-
-server.on('upgrade', (req, socket, head) => {
-  wsServer.handleUpgrade(req, socket, head, (ws) => {
-    console.log('upgrade');
-    wsServer.emit('connection', ws, req);
-  });
-});
-
-// server.listen(3000, () => console.log('WS server listening on 3000'));
+tlsServer.listen(3433, () => console.log('WS server listening on 3433'));
+app.listen(PORT);

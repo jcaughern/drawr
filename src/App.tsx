@@ -6,9 +6,10 @@ import DrawrPad from './components/DrawrPad';
 import SocketMessager from './components/SocketMessager';
 
 export default function App() {
-  const [socketUrl, setSocketUrl] = useState('ws://localhost:8080');
   const [messageHistory, setMessageHistory] = useState<MessageEvent[]>([]);
   const [name, setName] = useState('');
+
+  const socketUrl = 'wss://localhost:3433'
 
   const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
 
