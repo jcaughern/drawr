@@ -5,23 +5,30 @@
         "jest": true
     },
     "extends": [
-        "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
-        "prettier"
+        "airbnb",
+        "airbnb-typescript",
+        "prettier",
+        "plugin:import/typescript"
     ],
     "overrides": [
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
         "ecmaVersion": "latest",
-        "sourceType": "module"
+        "sourceType": "module",
+        "project": "./tsconfig.json"
     },
     "plugins": [
         "react",
         "react-hooks",
         "@typescript-eslint",
-        "prettier"
+        "prettier",
+        "jsx-a11y"
     ],
     "rules": {
         "react/react-in-jsx-scope": "off"

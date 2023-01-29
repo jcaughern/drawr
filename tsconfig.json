@@ -2,7 +2,7 @@
   "include": ["src/**/*"],
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["ES2022", "DOM"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "jsx": "react",
     "module": "commonjs",
     "isolatedModules": true,
@@ -12,6 +12,7 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "noImplicitThis": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    // "allowJs": true
   }
 }
